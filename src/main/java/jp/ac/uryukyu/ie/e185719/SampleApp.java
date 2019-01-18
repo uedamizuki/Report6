@@ -3,6 +3,9 @@ package jp.ac.uryukyu.ie.e185719;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * 画像を表示するためのクラス
+ */
 public class SampleApp extends Frame {
     Image img;
 

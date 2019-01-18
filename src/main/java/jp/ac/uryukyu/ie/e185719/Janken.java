@@ -5,9 +5,18 @@ import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
 
+/**
+ * じゃんけんをするためのクラス
+ * ボタンにグー、チョキ、パーが書かれておりそれのどれかを押すことで勝負
+ * 相手の手はランダムに決まり、勝負に勝つとご褒美の絵を見れる
+ */
 class Janken extends JFrame implements ActionListener {
-    String MyHand;
-    String EnemyHand;
+    /**
+     * MyHand 自分の手
+     * EnemyHand 相手の手
+     */
+    private String MyHand;
+    private String EnemyHand;
 
     /**
      * win_num 勝った回数
@@ -15,12 +24,12 @@ class Janken extends JFrame implements ActionListener {
      * draw_num 引き分けの回数
      * janken_num じゃんけんをした回数
      */
-    int win_num;
-    int loose_num;
-    int draw_num;
-    int janken_num;
+    private int win_num;
+    private int loose_num;
+    private int draw_num;
+    private int janken_num;
 
-    boolean win = false;
+    private boolean win = false;
     /**
      * じゃんけんの手を表示
      * 左からグー、チョキ、パーを表示する
@@ -54,7 +63,12 @@ class Janken extends JFrame implements ActionListener {
 
     /**
      * ボタンを押された時に処理する内容
-     * @param e　ボタンの
+     * じゃんけんの一通りの動作
+     * 押されたボタンのtextを返す
+     * 相手の手を決める
+     * 勝負判定
+     * 勝てば画像を表示する
+     * @param e　コンポーネント(Button)を生成
      */
     public void actionPerformed(ActionEvent e) {
         setTitle("じゃんけんぽん");
@@ -94,9 +108,9 @@ class Janken extends JFrame implements ActionListener {
         EnemyHand = hands[r.nextInt(3)];
         System.out.println(EnemyHand);
     }
-
     /**
-     *
+     *勝負判定
+     * DRAW、WINを判定しそれ以外ならLOOSE
      */
     public void Jagement(){
         janken_num += 1;
@@ -119,6 +133,9 @@ class Janken extends JFrame implements ActionListener {
             System.out.println("LOOSE");
             loose_num += 1;
         }
+    }
+    public String getEnemyHand(){
+        return EnemyHand;
     }
 }
 
