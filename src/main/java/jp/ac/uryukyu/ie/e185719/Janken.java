@@ -1,12 +1,16 @@
 package jp.ac.uryukyu.ie.e185719;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 import javax.swing.*;
 
 class Janken extends JFrame implements ActionListener {
+    String MyHand;
+    String EnemyHand;
 
     /**
      * じゃんけんの手を表示
+     * 左からグー、チョキ、パーを表示する
      */
     Janken() {
         getContentPane().setLayout(null);
@@ -36,7 +40,35 @@ class Janken extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println("ボタンを押下");
+        MyHand = ((JButton)e.getSource()).getText();
+        System.out.println(MyHand);
+
+        Enemy();
+        Jagement();
+    }
+
+    /**
+     * 相手の手をランダムで決める。
+     */
+    public void Enemy(){
+        String[] hands = { "グー", "チョキ", "パー" };
+        Random r = new Random();
+        EnemyHand = hands[r.nextInt(3)];
+        System.out.println(EnemyHand);
+    }
+
+    public void Jagement(){
+        if(MyHand == EnemyHand){
+            System.out.println("DRAW");
+        }else if(MyHand == "グー" && EnemyHand == "チョキ") {
+            System.out.println("WIN");
+        }else if(MyHand == "チョキ" && EnemyHand == "パー") {
+            System.out.println("WIN");
+        }else if(MyHand == "パー" && EnemyHand == "グー") {
+            System.out.println("WIN");
+        }else{
+            System.out.println("LOOSE");
+        }
     }
 }
 
